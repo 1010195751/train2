@@ -12,6 +12,12 @@
 <link href="css/bxslider.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <script src="js/jquery.min.js"></script><script src="js/bxslider.min.js"></script><script src="js/common.js"></script><script src="js/bootstrap.js"></script><!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><script src="js/respond.min.js"></script><![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+    <title>百度地图API自定义地图</title>
+    <!--引用百度地图API-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=您的密匙"></script>
 </head>
 
 <body>
@@ -132,6 +138,53 @@
           <li><a href="javascript:;" title="贵阳：小茶叶有“大智慧”">贵阳：小茶叶有“大智慧”</a><span class='news_time'>2020-12-19</span></li>
         </ul>
       </div>
+      <section class="map">
+        <div class="map-content" id="dituContent">   <!--百度地图容器-->
+          <div style="width:700px;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+          <p style="color:red;font-weight:600">地图生成工具基于百度地图JS api v2.0版本开发，使用请申请密匙。
+            <a href="http://developer.baidu.com/map/index.php?title=jspopular/guide/introduction" style="color:#2f83c7" target="_blank">了解如何申请密匙</a>
+            <a href="http://lbsyun.baidu.com/apiconsole/key?application=key" style="color:#2f83c7" target="_blank">申请密匙</a>
+          </p>
+        </body>
+        <script type="text/javascript">
+          //创建和初始化地图函数：
+          function initMap(){
+            createMap();//创建地图
+            setMapEvent();//设置地图事件
+            addMapControl();//向地图添加控件
+            addMapOverlay();//向地图添加覆盖物
+          }
+          function createMap(){ 
+            map = new BMap.Map("map"); 
+            map.centerAndZoom(new BMap.Point(119.176356,26.075309),16);
+          }
+          function setMapEvent(){
+            map.enableScrollWheelZoom();
+            map.enableKeyboard();
+            map.enableDragging();
+            map.enableDoubleClickZoom()
+          }
+          function addClickHandler(target,window){
+            target.addEventListener("click",function(){
+              target.openInfoWindow(window);
+            });
+          }
+          function addMapOverlay(){
+          }
+          //向地图添加控件
+          function addMapControl(){
+            var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+            scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+            map.addControl(scaleControl);
+            var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+            map.addControl(navControl);
+            var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+            map.addControl(overviewControl);
+          }
+          var map;
+            initMap();
+        </script></div>
+    </section>
       <div class="index_contact">
         <h1 class="title_h1">联系我们</h1>
         <span class="title_span">CONTACT US</span>
@@ -160,4 +213,5 @@
   
     <p class="copyright_p">福建省福州市闽侯县闽江学院 &nbsp;电话：020-873468834 &nbsp;传真：020-98-873468834&nbsp;</p>
   </div>
+  <script src="./js/about.js"></script>
 </footer>
